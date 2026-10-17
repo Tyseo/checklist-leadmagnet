@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Lead Magnet - Audit en 10 points</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(315deg, #3a4f5b 3%, #df165a 98%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .progress-bar {
+            position: sticky;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 30px;
+            background: #e0e0e0;
+            border-top: 10px solid #fff;
+            border-bottom: 10px solid #fff;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 6px;
+        }
+
+        .score-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 15px 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #fafafa;
+        }
+
+        .score-label {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .score-value {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: bold;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+
+        .section:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-progress {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .checkbox-item:hover {
+            background: #f0f4ff;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .checkbox-item.checked {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: #667eea;
+            margin-top: 2px;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .checkbox-item.checked label {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .tip {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 10px 12px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .pro-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .seo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .action-items {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-family: inherit;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #333;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+
+        .action-items:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .reset-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reset-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .credit {
+            text-align: center;
+            color: #888;
+            margin-top: 25px;
+            font-size: 0.8em;
+            line-height: 1.5;
+        }
+
+        .collapse-icon {
+            transition: transform 0.3s;
+        }
+
+        .section.collapsed .collapse-icon {
+            transform: rotate(-90deg);
+        }
+
+        .section.collapsed .checkbox-group,
+        .section.collapsed .action-items,
+        .section.collapsed .tip {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .reset-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧲 Checklist Lead Magnet</h1>
+        <p class="subtitle">Auditer son lead magnet en 10 points</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress">0%</div>
+        </div>
+
+        <div class="score-box">
+            <div class="score-label">🎯 Score estimé</div>
+            <div class="score-value"><span id="score">0</span> / 100 · <span id="score-level">Insatisfaisant</span></div>
+        </div>
+
+        <!-- 1. TITRE -->
+        <div class="section" data-section="headline">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    ✍️ 1. Titre
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/3</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="headline-1" onchange="updateProgress()">
+                    <label for="headline-1">Formuler une promesse claire et « resserrée », avec seulement les mots nécessaires</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="headline-2" onchange="updateProgress()">
+                    <label for="headline-2">Livrer dans le contenu la promesse faite dans le titre</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="headline-3" onchange="updateProgress()">
+                    <label for="headline-3">Rendre le titre attractif sans être trompeur ni exagéré</label>
+                </div>
+            </div>
+            <div class="tip">
+                ⚠️ <strong>À éviter :</strong> un titre trop long ou trop court, ou dont certains éléments de la promesse ne sont pas tenus dans le contenu
+            </div>
+        </div>
+
+        <!-- 2. DÉSIRABILITÉ -->
+        <div class="section" data-section="desirability">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🔥 2. Désirabilité
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/2</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="desirability-1" onchange="updateProgress()">
+                    <label for="desirability-1">Proposer quelque chose dont l'audience cible a besoin ou envie</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="desirability-2" onchange="updateProgress()">
+                    <label for="desirability-2">Présenter l'offre de façon convaincante</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SPÉCIFICITÉ -->
+        <div class="section" data-section="specificity">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🎯 3. Spécificité
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/2</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="specificity-1" onchange="updateProgress()">
+                    <label for="specificity-1">Offrir une solution ultra-spécifique à un marché ultra-spécifique</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="specificity-2" onchange="updateProgress()">
+                    <label for="specificity-2">Ne pas promettre plusieurs solutions à plusieurs marchés à la fois</label>
+                </div>
+            </div>
+            <div class="tip">
+                💡 <strong>Astuce :</strong> un lead magnet large ou vague attire moins qu'une réponse précise à un problème précis
+            </div>
+        </div>
+
+        <!-- 4. CONGRUENCE -->
+        <div class="section" data-section="congruency">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🔗 4. Congruence
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/1</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="congruency-1" onchange="updateProgress()">
+                    <label for="congruency-1">Résoudre un problème parfaitement en phase avec celui que résout l'offre principale</label>
+                </div>
+            </div>
+            <div class="tip">
+                ℹ️ <strong>Important :</strong> si le problème traité n'a aucun rapport avec l'offre principale, les contacts récoltés ne seront pas qualifiés
+            </div>
+        </div>
+
+        <!-- 5. RAPIDITÉ -->
+        <div class="section" data-section="speed">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    ⚡ 5. Rapidité
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/1</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="speed-1" onchange="updateProgress()">
+                    <label for="speed-1">Délivrer la valeur instantanément</label>
+                </div>
+            </div>
+            <div class="tip">
+                ⚠️ <strong>À éviter :</strong> envoi par courrier postal, livraison étalée sur plusieurs jours ou plusieurs semaines
+            </div>
+        </div>
+
+        <!-- 6. CONSOMMATION -->
+        <div class="section" data-section="consumption">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    📖 6. Consommation
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/3</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consumption-1" onchange="updateProgress()">
+                    <label for="consumption-1">Mettre en forme l'information pour qu'elle soit facile à consommer</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consumption-2" onchange="updateProgress()">
+                    <label for="consumption-2">Fluidifier les transitions entre les idées</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consumption-3" onchange="updateProgress()">
+                    <label for="consumption-3">Supprimer les « speed bumps » (ralentisseurs) évitables grâce à la mise en forme</label>
+                </div>
+            </div>
+            <div class="tip">
+                💡 <strong>Speed bump :</strong> tout élément qui freine la lecture (bloc de texte dense, titre ou transition mal amenés…). Plus il y en a, plus la consommation est pénible.
+            </div>
+        </div>
+
+        <!-- 7. OBJECTIF -->
+        <div class="section" data-section="goal">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🚀 7. Objectif (appel à l'action)
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/3</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="goal-1" onchange="updateProgress()">
+                    <label for="goal-1">Inclure un appel à l'action clair et pertinent par rapport au sujet du lead magnet</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="goal-2" onchange="updateProgress()">
+                    <label for="goal-2">Soigner le texte et le design de l'appel à l'action pour inciter à passer à l'action</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="goal-3" onchange="updateProgress()">
+                    <label for="goal-3">Placer l'appel à l'action à un ou plusieurs endroits bien visibles du lead magnet</label>
+                </div>
+            </div>
+            <div class="tip">
+                ⚠️ <strong>À éviter :</strong> un appel à l'action sans rapport avec le sujet, peu convaincant, difficile à trouver ou… totalement absent
+            </div>
+        </div>
+
+        <!-- 8. MÉDIAS -->
+        <div class="section" data-section="media">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🖼️ 8. Médias
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/2</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="media-1" onchange="updateProgress()">
+                    <label for="media-1">Utiliser des images, vidéos et audios nets, clairs et de haute qualité de production</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="media-2" onchange="updateProgress()">
+                    <label for="media-2">Couvrir tous les besoins du lead magnet en images, vidéo et audio</label>
+                </div>
+            </div>
+            <div class="tip">
+                ⚠️ <strong>À éviter :</strong> un média flou, inutile ou de faible qualité. Un lead magnet sans aucun média obtient la note la plus basse.
+            </div>
+        </div>
+
+        <!-- 9. EXHAUSTIVITÉ -->
+        <div class="section" data-section="completeness">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    ✅ 9. Exhaustivité
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/3</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="completeness-1" onchange="updateProgress()">
+                    <label for="completeness-1">Tenir entièrement la promesse faite dans le titre</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="completeness-2" onchange="updateProgress()">
+                    <label for="completeness-2">Renforcer chaque section avec des médias (images, vidéo…) et des exemples</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="completeness-3" onchange="updateProgress()">
+                    <label for="completeness-3">Ajouter des données et/ou des liens vers des informations complémentaires</label>
+                </div>
+            </div>
+            <div class="tip">
+                ℹ️ <strong>Repère :</strong> chaque section qui aurait besoin d'un média, d'un exemple, de données ou d'un lien pour être complète fait perdre des points
+            </div>
+        </div>
+
+        <!-- 10. COHÉRENCE -->
+        <div class="section" data-section="consistency">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title">
+                    <span class="collapse-icon">🔽</span>
+                    🧩 10. Cohérence
+                </div>
+                <div class="section-progress">
+                    <span class="section-count">0/2</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consistency-1" onchange="updateProgress()">
+                    <label for="consistency-1">Garder un contenu cohérent avec la marque</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consistency-2" onchange="updateProgress()">
+                    <label for="consistency-2">Garder un contenu cohérent avec les autres informations diffusées par l'organisation</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="reset-btn" onclick="resetAll()">🔄 Réinitialiser</button>
+
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'checklistLeadMagnet';
+        const COLLAPSED_KEY = 'collapsedLeadMagnet';
+        const ACTIONS_KEY = 'actionsLeadMagnet';
+
+        const totalCheckboxes = document.querySelectorAll('input[type="checkbox"]').length;
+
+        function getLevel(score) {
+            if (score >= 90) return 'Exceptionnel';
+            if (score >= 70) return 'Compétent';
+            if (score >= 50) return 'À améliorer';
+            return 'Insatisfaisant';
+        }
+
+        function updateProgress() {
+            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            const percentage = Math.round((checkedCount / totalCheckboxes) * 100);
+
+            document.getElementById('progress').style.width = percentage + '%';
+            document.getElementById('progress').textContent = percentage + '%';
+
+            let scoreTotal = 0;
+            const criteria = document.querySelectorAll('.section:not(.notes)');
+
+            criteria.forEach(section => {
+                const checkboxes = section.querySelectorAll('input[type="checkbox"]');
+                const checked = section.querySelectorAll('input[type="checkbox"]:checked').length;
+                const total = checkboxes.length;
+
+                const counter = section.querySelector('.section-count');
+                counter.textContent = `${checked}/${total}`;
+
+                scoreTotal += (checked / total) * 10;
+
+                checkboxes.forEach(checkbox => {
+                    const item = checkbox.closest('.checkbox-item');
+                    if (checkbox.checked) {
+                        item.classList.add('checked');
+                    } else {
+                        item.classList.remove('checked');
+                    }
+                });
+            });
+
+            const score = Math.round(scoreTotal);
+            document.getElementById('score').textContent = score;
+            document.getElementById('score-level').textContent = getLevel(score);
+
+            saveState();
+        }
+
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+            saveCollapsedState();
+        }
+
+        function resetAll() {
+            if (confirm('Réinitialiser toute la checklist ?')) {
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                document.getElementById('action-items').value = '';
+                updateProgress();
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(COLLAPSED_KEY);
+                localStorage.removeItem(ACTIONS_KEY);
+            }
+        }
+
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                state[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const state = JSON.parse(saved);
+                Object.keys(state).forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = state[id];
+                    }
+                });
+                updateProgress();
+            }
+        }
+
+        function saveCollapsedState() {
+            const collapsed = [];
+            document.querySelectorAll('.section.collapsed').forEach(section => {
+                collapsed.push(section.getAttribute('data-section'));
+            });
+            localStorage.setItem(COLLAPSED_KEY, JSON.stringify(collapsed));
+        }
+
+        function loadCollapsedState() {
+            const saved = localStorage.getItem(COLLAPSED_KEY);
+            if (saved) {
+                const collapsed = JSON.parse(saved);
+                collapsed.forEach(sectionName => {
+                    const section = document.querySelector(`[data-section="${sectionName}"]`);
+                    if (section) {
+                        section.classList.add('collapsed');
+                    }
+                });
+            }
+        }
+
+        function saveActions() {
+            localStorage.setItem(ACTIONS_KEY, document.getElementById('action-items').value);
+        }
+
+        function loadActions() {
+            const saved = localStorage.getItem(ACTIONS_KEY);
+            if (saved) {
+                document.getElementById('action-items').value = saved;
+            }
+        }
+
+        window.onload = function() {
+            loadState();
+            loadCollapsedState();
+            loadActions();
+        };
+
+        updateProgress();
+    </script>
+</body>
+</html>
